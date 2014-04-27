@@ -22,14 +22,16 @@ function launchApplication() {
 			// Success
 			function (s) {
 				session = s;
+				launchPage();
 			},
 			// Error
 			function (castError) {
 				console.log('session_established');
 				console.log("ERROR: " + JSON.stringify(castError));
 			});
+	} else {
+		launchPage();
 	}
-	launchPage();
 };
 
 function launchPage() {
