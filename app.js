@@ -7,10 +7,8 @@ window.onload = function() {
 	var customMessageBus =  window.castReceiverManager.getCastMessageBus("urn:x-cast:fr.the6thscreen.chromecastapp");
 	customMessageBus.onMessage = function(event) {
 		console.log(event);
-		$.get(event.data, function(siteData) {
-   	    	var ifram = document.getElementById("webApp");
-			ifram.innerHTML = siteData;
-		});
+   	    var ifram = document.getElementById("webApp");
+		ifram.src = event.data;
 	}
 
 	/**
