@@ -8,6 +8,10 @@ initializeCastApi = function() {
 		sessionListener,
 		receiverListener);
 	chrome.cast.initialize(apiConfig, onInitSuccess, onError);
+
+
+	var api = new chrome.cast.API();
+	api.addReceiverListener(applicationID, function(list) { console.log(list); });
 };
 
 if (!chrome.cast || !chrome.cast.isAvailable) {

@@ -8,10 +8,10 @@
 <body>
 <div class="container">
 
-    <form class="form-signin" role="form">
+    <form class="form-signin" role="form" onsubmit="launchApplication(); return false;">
         <h2 class="form-signin-heading">Cast a website on your ChromeCast: </h2>
         <input type="text" id="webadress" class="form-control" placeholder="Web adress" required autofocus>
-        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="launchApplication()">Cast !</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Cast !</button>
     </form>
 
 </div>
