@@ -13,6 +13,28 @@ if (!chrome.cast || !chrome.cast.isAvailable) {
 }
 
 /**
+ * initialization success callback
+ */
+function onInitSuccess() {
+	appendMessage("init success");
+}
+
+/**
+ * initialization error callback
+ */
+function onError() {
+	console.log("error");
+	appendMessage("error");
+}
+
+/**
+ * generic success callback
+ */
+function onSuccess(message) {
+	console.log(message);
+}
+
+/**
  * receiver listener during initialization
  */
 function receiverListener(e) {
