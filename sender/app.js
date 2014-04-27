@@ -1,3 +1,5 @@
+var session = null;
+
 initializeCastApi = function() {
 
 	var applicationID = '11AB7AE5';
@@ -14,18 +16,27 @@ if (!chrome.cast || !chrome.cast.isAvailable) {
 
 function launchApplication() {
 
-	var webadress = document.getElementById('webadress').value;
+	if (session === null) {
 
-	chrome.cast.requestSession(
-		// Success
-		function(session){
-			session.sendMessage("urn:x-cast:fr.the6thscreen.chromecastapp",webadress,successCallBack, errorCallback);
-		},
-		// Error
-		function(castError){
-			console.log('session_established');
-			console.log("ERROR: " + JSON.stringify(castError));
-		});
+		chrome.cast.requestSession(
+			// Success
+			function (s) {
+				session = s;
+			},
+			// Error
+			function (castError) {
+				console.log('session_established');
+				console.log("ERROR: " + JSON.stringify(castError));
+			});
+	}
+	launchPage();
+};
+
+function launchPage() {
+	if (session !== null) {
+		var webadress = document.getElementById('webadress').value;
+		session.sendMessage("urn:x-cast:fr.the6thscreen.chromecastapp", webadress, successCallBack, errorCallback);
+	}
 }
 
 /**
