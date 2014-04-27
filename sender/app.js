@@ -32,7 +32,7 @@ function launchApplication() {
  * initialization success callback
  */
 function onInitSuccess() {
-	appendMessage("init success");
+	console.log("init success");
 }
 
 /**
