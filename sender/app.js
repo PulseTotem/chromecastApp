@@ -93,7 +93,7 @@ function errorCallback(error) {
 	console.log(error);
 
 	if (session !== null) {
-		session === null;
+		session = null;
 		launchApplication();
 	}
 }
