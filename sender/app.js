@@ -7,7 +7,7 @@ initializeCastApi = function() {
 	var apiConfig = new chrome.cast.ApiConfig(sessionRequest,
 		sessionListener,
 		receiverListener);
-	chrome.cast.initialize(apiConfig, onInitSuccess, onError);
+	//chrome.cast.initialize(apiConfig, onInitSuccess, onError);
 
 
 	var api = new cast.API();
