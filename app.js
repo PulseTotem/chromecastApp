@@ -8,13 +8,23 @@ window.onload = function() {
 	customMessageBus.onMessage = function(event) {
 		console.log(event);
    	    var ifram = document.getElementById("webApp");
-		try {
-			ifram.src = event.data;
-		} catch (e) {
-			console.log(e);
-			ifram.innerHTML = "<h1>Oops ! You are not allowed to display the following address in a frame: "+event.data+"<br /> :(</h1>";
-		}
+		ifram.src = event.data;
 	}
+
+	var myhandler = function(msg, url, line) {
+		console.log(msg);
+		var ifram = document.getElementById("webApp");
+		ifram.innerHTML = "<h1>Oops ! You are not allowed to display the following address in a frame: "+event.data+"<br /> :(</h1>";
+	};
+
+	var addErrorHandler = function (win, handler) {
+		win.onerror = handler;
+		for (var i = 0; i < win.frames.length; i++) {
+			addErrorHandler(win.frames[i], handler);
+		}
+	};
+
+	addErrorHandler(window, myhandler);
 
 	/**
 	 * Application config
