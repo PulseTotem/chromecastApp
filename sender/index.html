@@ -3,8 +3,17 @@
     <title>Sender</title>
     <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
     <script type="text/javascript" src="app.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 </head>
 <body>
-<div id="debugmessage"></div>
+<div class="container">
+
+    <form class="form-signin" role="form">
+        <h2 class="form-signin-heading">Cast a website on your ChromeCast: </h2>
+        <input type="text" id="webadress" class="form-control" placeholder="Web adress" required autofocus>
+        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="launchApplication()">Cast !</button>
+    </form>
+
+</div>
 </body>
 </html>

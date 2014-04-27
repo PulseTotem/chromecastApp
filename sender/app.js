@@ -12,6 +12,22 @@ if (!chrome.cast || !chrome.cast.isAvailable) {
 	setTimeout(initializeCastApi, 1000);
 }
 
+function launchApplication() {
+
+	var webadress = document.getElementById('webadress').value;
+
+	chrome.cast.requestSession(
+		// Success
+		function(session){
+			session.sendMessage("urn:x-cast:fr.the6thscreen.chromecastapp",webadress,successCallBack, errorCallback);
+		},
+		// Error
+		function(castError){
+			console.log('session_established');
+			console.log("ERROR: " + JSON.stringify(castError));
+		});
+}
+
 /**
  * initialization success callback
  */
@@ -24,7 +40,6 @@ function onInitSuccess() {
  */
 function onError() {
 	console.log("error");
-	appendMessage("error");
 }
 
 /**
@@ -40,11 +55,9 @@ function onSuccess(message) {
 function receiverListener(e) {
 	if( e === 'available' ) {
 		console.log("receiver found");
-		appendMessage("receiver found");
 	}
 	else {
 		console.log("receiver list empty");
-		appendMessage("receiver list empty");
 	}
 };
 
@@ -53,9 +66,9 @@ function receiverListener(e) {
  */
 function sessionListener(e) {
 	console.log('New session ID: ' + e.sessionId);
-	appendMessage('New session ID:' + e.sessionId);
 	session = e;
-	session.sendMessage("urn:x-cast:fr.the6thscreen.chromecastapp","http://grid-vm3.unice.fr:8080/yourcast-glc-client/",successCallBack, errorCallback);
+	var webadress = document.getElementById('webadress').value;
+	session.sendMessage("urn:x-cast:fr.the6thscreen.chromecastapp",webadress,successCallBack, errorCallback);
 };
 
 function successCallBack() {
@@ -73,18 +86,8 @@ function errorCallback(error) {
 function sessionUpdateListener(isAlive) {
 	var message = isAlive ? 'Session Updated' : 'Session Removed';
 	message += ': ' + session.sessionId;
-	appendMessage(message);
+	console.log(message);
 	if (!isAlive) {
 		console.log("Not alive anymore");
 	}
-};
-
-
-/**
- * append message to debug message window
- * @param {string} message A message string
- */
-function appendMessage(message) {
-	var dw = document.getElementById("debugmessage");
-	dw.innerHTML += '\n' + JSON.stringify(message);
 };
