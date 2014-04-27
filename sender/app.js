@@ -78,3 +78,13 @@ function sessionUpdateListener(isAlive) {
 		console.log("Not alive anymore");
 	}
 };
+
+
+/**
+ * append message to debug message window
+ * @param {string} message A message string
+ */
+function appendMessage(message) {
+	var dw = document.getElementById("debugmessage");
+	dw.innerHTML += '\n' + JSON.stringify(message);
+};
