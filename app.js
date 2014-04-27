@@ -10,7 +10,7 @@ window.onload = function() {
 		$.get(event.data, function(siteData) {
    	    	var ifram = document.getElementById("webApp");
 			ifram.innerHTML = siteData;
-		}
+		});
 	}
 
 	/**
