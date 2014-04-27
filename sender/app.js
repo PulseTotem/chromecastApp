@@ -91,6 +91,11 @@ function successCallBack() {
 function errorCallback(error) {
 	console.log('event error !');
 	console.log(error);
+
+	if (session !== null) {
+		session === null;
+		launchApplication();
+	}
 }
 
 /**
